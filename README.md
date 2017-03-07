@@ -2,6 +2,11 @@
 
 Get the nano seconds of now
 
+[![Build Status](https://travis-ci.org/vicanso/nano-seconds.svg?style=flat-square)](https://travis-ci.org/vicanso/nano-seconds)
+[![Coverage Status](https://img.shields.io/coveralls/vicanso/nano-seconds/master.svg?style=flat)](https://coveralls.io/r/vicanso/nano-seconds?branch=master)
+[![npm](http://img.shields.io/npm/v/nano-seconds.svg?style=flat-square)](https://www.npmjs.org/package/nano-seconds)
+[![Github Releases](https://img.shields.io/npm/dm/nano-seconds.svg?style=flat-square)](https://github.com/vicanso/nano-seconds)
+
 ## Installation
 
 ```bash
