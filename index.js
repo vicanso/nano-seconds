@@ -1,22 +1,56 @@
 'use strict';
 
 const ms = Date.now();
-const start = process.hrtime();
-const currentSeconds = Math.floor(ms / 1000);
-const currentUs = (ms % 1000) * 1000 * 1000;
+const startSeconds = Math.floor(ms / 1000);
+const startNanoseconds = (ms % 1000) * 1000 * 1000;
 const oneSecond = 1000 * 1000 * 1000;
+let nsCount = 0;
+
+function nanoseconds() {
+  if (exports.mode === 'step') {
+    nsCount = (nsCount + 1) % 1e6;
+    return nsCount;
+  }
+  return Math.floor(Math.random() * 1e6);
+}
+
+function customHrtime(time) {
+  const current = Date.now();
+  const currentSeconds = Math.floor(current / 1000);
+  const currentNanoseconds = ((current % 1000) * 1e6) + nanoseconds();
+  if (!time) {
+    return [
+      currentSeconds,
+      currentNanoseconds,
+    ];
+  }
+  let offsetSeconds = currentSeconds - time[0];
+  let offsetNanoseconds = currentNanoseconds - time[1];
+  if (offsetNanoseconds < 0) {
+    offsetNanoseconds += 1e9;
+    offsetSeconds -= 1;
+  }
+  return [
+    offsetSeconds,
+    offsetNanoseconds,
+  ];
+}
+
+const hrtime = (process && process.hrtime) || customHrtime;
+const start = hrtime();
+
 
 function now() {
-  const arr = process.hrtime(start);
-  const value = arr[1] + currentUs;
+  const arr = hrtime(start);
+  const value = arr[1] + startNanoseconds;
   if (value >= oneSecond) {
     return [
-      currentSeconds + arr[0] + 1,
+      startSeconds + arr[0] + 1,
       value % oneSecond,
     ];
   }
   return [
-    currentSeconds + arr[0],
+    startSeconds + arr[0],
     value,
   ];
 }
@@ -38,3 +72,4 @@ function difference(ns, ns2) {
 exports.now = now;
 exports.toString = toString;
 exports.difference = difference;
+exports.mode = 'random';
