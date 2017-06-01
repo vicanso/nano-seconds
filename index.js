@@ -14,10 +14,34 @@ function nanoseconds() {
   return Math.floor(Math.random() * 1e6);
 }
 
-function customHrtime(time) {
+function browserHrtime() {
+  const current = Math.floor(window.performance.now() * 1e6);
+  const currentSeconds = Math.floor(current / 1e9);
+  const currentNanoseconds = current % 1e9;
+  return [
+    currentSeconds,
+    currentNanoseconds,
+  ];
+}
+
+function getHrtime() {
+  /* eslint no-undef:0 */
+  if (window && window.performance && window.performance.now) {
+    return browserHrtime();
+  }
   const current = Date.now();
   const currentSeconds = Math.floor(current / 1000);
   const currentNanoseconds = ((current % 1000) * 1e6) + nanoseconds();
+  return [
+    currentSeconds,
+    currentNanoseconds,
+  ];
+}
+
+function customHrtime(time) {
+  const arr = getHrtime();
+  const currentSeconds = arr[0];
+  const currentNanoseconds = arr[1];
   if (!time) {
     return [
       currentSeconds,
