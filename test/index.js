@@ -33,7 +33,7 @@ describe('Nano-seconds:nodejs', () => {
       const diff = nano.difference(now);
       assert.equal(`${diff}`.length, 9);
       done();
-    }, 100);
+    }, 150);
   });
 
 });
@@ -64,7 +64,7 @@ describe('Nano-seconds:browser(performance.now)', () => {
       const diff = nano.difference(now);
       assert.equal(`${diff}`.length, 9);
       done();
-    }, 100);
+    }, 150);
   });
 
 });
@@ -103,7 +103,7 @@ describe('Nano-seconds:browser(not performance.now)', () => {
       const diff = nano.difference(now);
       assert.equal(`${diff}`.length, 9);
       done();
-    }, 100);
+    }, 150);
   });
 
   it('get nano in step mode', () => {
