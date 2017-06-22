@@ -41,6 +41,23 @@ console.info(nano.toString(ns));
 // 1488895353025439741
 console.info(nano.toString());
 ```
+
+### toISOString
+
+Format the nano seconds to ISOString
+
+- `ns` if not set the param, it will be `nano.now()`
+
+```js
+const nano = require('nano-seconds');
+const ns = nano.now();
+// 2017-06-22T14:37:42.506635539Z
+console.info(nano.toISOString(ns));
+// 2017-06-22T14:37:42.5069231Z
+console.info(nano.toISOString());
+```
+
+
 ### difference
 
 Get the difference of two nano seconds, ns2 - ns1

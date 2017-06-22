@@ -27,6 +27,11 @@ describe('Nano-seconds:nodejs', () => {
     }
   });
 
+  it('get nano to ISOString', () => {
+    const str = nano.toISOString();
+    assert(str);
+  });
+
   it('get difference', (done) => {
     const now = nano.now();
     setTimeout(() => {
