@@ -20,7 +20,8 @@ describe('Nano-seconds:nodejs', () => {
     assert.equal(Math.floor(now / 1000), arr[0]);
   });
 
-  it('get nano to string', () => {
+  it('get nano to string', function () {
+    this.timeout(5000);
     for (let i = 0; i < 100000; i++) {
       const ns = nano.toString();
       assert.equal(ns.length, 19);
@@ -56,7 +57,8 @@ describe('Nano-seconds:browser(performance.now)', () => {
     assert.equal(Math.floor(now / 1000), arr[0]);
   });
 
-  it('get nano to string', () => {
+  it('get nano to string', function () {
+    this.timeout(5000);
     for (let i = 0; i < 100000; i++) {
       const ns = nano.toString();
       assert.equal(ns.length, 19);
