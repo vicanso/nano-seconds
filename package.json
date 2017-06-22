@@ -1,7 +1,7 @@
 {
   "name": "nano-seconds",
   "description": "Get the nano seconds of current time",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "author": "Tree Xie <vicansocanbico@gmail.com>",
   "keywords": [
     "nanoseconds",
