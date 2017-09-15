@@ -57,6 +57,19 @@ console.info(nano.toISOString(ns));
 console.info(nano.toISOString());
 ```
 
+### fromISOString
+
+Get the nano from ISOString
+
+- `iosFormat` ISO Date String
+
+```js
+const nano = require('nano-seconds');
+const arr = nano.fromISOString(str);
+// [ 1505477440, 922020280 ]
+console.info(arr);
+```
+
 
 ### difference
 

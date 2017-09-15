@@ -33,6 +33,13 @@ describe('Nano-seconds:nodejs', () => {
     assert(str);
   });
 
+  it('get nano from ISOString', () => {
+    const str = '2017-09-15T12:10:40.92202028Z';
+    const arr = nano.fromISOString(str);
+    assert.equal(arr[0], 1505477440);
+    assert.equal(arr[1], 922020280);
+  });
+
   it('get difference', (done) => {
     const now = nano.now();
     setTimeout(() => {

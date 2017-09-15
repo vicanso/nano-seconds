@@ -145,6 +145,22 @@ function toISOString(arr) {
 }
 
 /**
+ * Get the nano form iso string
+ *
+ * @param {any} str
+ */
+function fromISOString(str) {
+  const arr = str.split('.');
+  const date = new Date(`${arr[0]}.000Z`);
+  const value = arr[1].substring(0, arr[1].length - 1);
+  const ns = Number.parseInt(`${value}000000000`.substring(0, 9), 10);
+  return [
+    date.getTime() / 1000,
+    ns,
+  ];
+}
+
+/**
  * Get the difference of the nano seconds
  *
  * @param {Array} ns [Seconds, NanoSeconds]
@@ -162,4 +178,5 @@ exports.now = now;
 exports.toString = toString;
 exports.difference = difference;
 exports.toISOString = toISOString;
+exports.fromISOString = fromISOString;
 exports.mode = 'random';
